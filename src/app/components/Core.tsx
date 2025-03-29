@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 // Define the team member type
 interface TeamMember {
@@ -11,7 +11,7 @@ interface TeamMember {
 }
 
 export default function TeamCarousel() {
-  // Sample team data - replace with your actual team data
+  // Sample team data
   const teamMembers: TeamMember[] = [
     { name: "Navya Gupta", role: "President", imageUrl: "/team/Navya.jpg" },
     { name: "Mukul Gupta", role: "Vice President", imageUrl: "/team/Mukul.jpg" },
@@ -35,50 +35,45 @@ export default function TeamCarousel() {
   }, [teamMembers.length]);
 
   return (
-    <div className="relative w-full overflow-hidden bg-black py-16 min-h-[calc(100vh-64px)] mt-16 flex flex-col items-center justify-center z-10">
-      {/* Base Gradient Background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-l from-green-800 via-blue-900 to-black" />
-      
+    <div className="relative w-full overflow-hidden mt-0 bg-[#02091c] py-16 flex flex-col items-center justify-center z-10">
+{/* Base Gradient Background */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-l from-green-700 via-blue-800 to-black" />
+
       {/* Additional Gradient Layers */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,theme(colors.emerald.500),transparent_50%)] opacity-20" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,theme(colors.blue.500),transparent_50%)] opacity-20" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,theme(colors.emerald.500),transparent_50%)] opacity-30" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,theme(colors.blue.400),transparent_50%)] opacity-30" />
       </div>
-      
+
       {/* Noise Texture */}
-      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
-      
-      <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-l from-emerald-800 via-blue-400 to-emerald-800 bg-clip-text text-transparent relative z-10">Meet the Team</h2>
-      
-      {/* Increased vertical space for the carousel */}
+      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.05] mix-blend-overlay pointer-events-none" />
+
+      {/* Title */}
+      <h2 className="text-4xl font-bold text-center mb-16 
+        bg-gradient-to-l from-emerald-400 via-blue-300 to-emerald-400 
+        bg-clip-text text-transparent brightness-120 contrast-115 shadow-md">
+        Meet the Team
+      </h2>
+
+      {/* Carousel Container */}
       <div className="relative w-full h-96 mt-24 mb-32">
         {teamMembers.map((member, index) => {
-          // Calculate position in a more spread out circle
           const totalCards = teamMembers.length;
-          // Adjust the current position based on active index
           const adjustedIndex = (index - activeIndex + totalCards) % totalCards;
           
-          // Position cards in a full circle around the center
-          const startAngle = Math.PI / 2; // Start at bottom (90 degrees)
+          const startAngle = Math.PI / 2;
           const angle = startAngle + (adjustedIndex / totalCards) * 2 * Math.PI;
           
-          // Radius is how far from center the cards will be
-          const radius = 36; // slightly reduced to keep cards more compact
+          const radius = 38;
+          const x = 50 + radius * Math.cos(angle);
+          const y = 50 + radius * Math.sin(angle);
           
-          // Calculate x and y positions based on angle
-          const x = 50 + radius * Math.cos(angle); // center + radius * cos(angle)
-          const y = 50 + radius * Math.sin(angle); // center + radius * sin(angle)
-          
-          // Scale based on position - make active card larger
           const isActive = adjustedIndex === 0;
           const distanceFromActive = Math.min(adjustedIndex, totalCards - adjustedIndex);
-          // Increase scale for active element to make it more prominent
           const scale = isActive ? 1.3 : 0.7 - (distanceFromActive * 0.05);
-          
-          // z-index to control which cards appear on top - keep lower than header
           const zIndex = 40 - distanceFromActive;
-          
+
           return (
             <motion.div
               key={index}
@@ -94,12 +89,10 @@ export default function TeamCarousel() {
               transition={{ duration: 0.8, ease: "easeInOut" }}
               onClick={() => setActiveIndex(index)}
             >
-              <div className={`${isActive ? 'w-60' : 'w-50'} rounded-xl shadow-lg overflow-hidden cursor-pointer bg-black/80 backdrop-blur-sm border border-emerald-800/50`}>
-                <div className={`${isActive ? 'h-60' : 'h-50'}`}>
+              <div className="w-56 rounded-xl shadow-lg overflow-hidden cursor-pointer bg-black/80 backdrop-blur-md border border-emerald-700/50">
+                <div className="h-56">
                   <div className="bg-gradient-to-b from-blue-900 to-emerald-900 w-full h-full flex items-center justify-center">
-                    {/* Placeholder for image - replace with actual image */}
                     <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${member.imageUrl})` }}>
-                      {/* Fallback if image doesn't load */}
                       <div className="w-full h-full flex items-center justify-center text-gray-400 text-xl">
                         {!member.imageUrl && member.name.substring(0, 1)}
                       </div>
@@ -107,21 +100,25 @@ export default function TeamCarousel() {
                   </div>
                 </div>
                 <div className="p-4 bg-black/70 backdrop-blur-sm">
-                  <h3 className={`font-bold bg-gradient-to-l from-emerald-600 via-blue-400 to-emerald-600 bg-clip-text text-transparent ${isActive ? 'text-xl' : 'text-lg'}`}>{member.name}</h3>
-                  <p className="text-emerald-300">{member.role}</p>
+                  <h3 className="font-bold text-xl 
+                    bg-gradient-to-l from-emerald-400 via-blue-300 to-emerald-400 
+                    bg-clip-text text-transparent shadow-lg">
+                    {member.name}
+                  </h3>
+                  <p className="text-emerald-200 brightness-150">{member.role}</p>
                 </div>
               </div>
             </motion.div>
           );
         })}
       </div>
-      
-      {/* Enhanced navigation dots with fancy animations */}
+
+      {/* Navigation Dots */}
       <div className="flex justify-center mt-20 gap-4 px-4 py-2 bg-black/30 backdrop-blur-sm rounded-full shadow-md border border-emerald-800/30">
         {teamMembers.map((_, index) => {
           const isActive = activeIndex === index;
           const isHovered = hoveredDot === index;
-          
+
           return (
             <motion.button
               key={index}
@@ -138,32 +135,20 @@ export default function TeamCarousel() {
                   backgroundColor: isActive ? "#10b981" : isHovered ? "#0ea5e9" : "#374151",
                   scale: isActive ? 1 : isHovered ? 1.2 : 1,
                 }}
-                transition={{ 
-                  duration: 0.3, 
-                  ease: "easeOut" 
-                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
               />
-              
+
               {isActive && (
                 <motion.div
                   className="absolute inset-0 rounded-full bg-emerald-500 -z-10"
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1.8, opacity: 0 }}
-                  transition={{ 
-                    duration: 1.5, 
-                    ease: "easeOut", 
+                  transition={{
+                    duration: 1.5,
+                    ease: "easeOut",
                     repeat: Infinity,
-                    repeatDelay: 0.5 
+                    repeatDelay: 0.5,
                   }}
-                />
-              )}
-              
-              {isActive && (
-                <motion.div 
-                  className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-full"
-                  initial={{ width: 0 }}
-                  animate={{ width: '20px' }}
-                  transition={{ duration: 0.3 }}
                 />
               )}
             </motion.button>
@@ -171,5 +156,5 @@ export default function TeamCarousel() {
         })}
       </div>
     </div>
-  )
+  );
 }

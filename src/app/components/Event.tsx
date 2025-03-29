@@ -39,7 +39,7 @@ export default function PortfolioGrid() {
   }, [controls])
   
   return (
-    <div className="relative w-full overflow-hidden bg-background py-16">
+    <div className="relative w-full overflow-hidden bg-[#02091c] py-10">
       <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background z-10" />
       
       <div className="overflow-hidden">

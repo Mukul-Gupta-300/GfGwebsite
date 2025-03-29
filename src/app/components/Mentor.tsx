@@ -6,7 +6,7 @@ import { motion, useAnimation, useMotionValue } from "framer-motion"
 const features = [
   {
     title: "Ms. Rachna Narula",
-    description: "Dear Students, \nAs an Assistant Professor in the CSE Department at Bharatividyapeeth's College of Engineering, New Delhi, \nI have navigated an educational journey from schooling through B. Tech (Maharashi Dayanand University, Rohtak), \nM. Tech (Manav Rachna University, Faridabad), and Pursuing Ph.D. (The Northcap University, Gurugram). Throughout this \npath, self-valuation has been a cornerstone, and I believe it is essential for maintaining a balanced mind-set.\n\nAs the Faculty In-charge of our GeeksforGeeks (GFG) Student Chapter, I am delighted to welcome you to a community \ndedicated to fostering growth, innovation, and collaboration in the field of computer science and engineering. \n\nOur Mission: \nIt aims to create a peer-to-peer learning environment where students can enhance their \ntechnical skills, engage in meaningful projects, and prepare for successful careers in the tech industry. \n\nOpportunities and Benefits: \n\n•	Skill Development: Participate in workshops, coding competitions, and hackathons to \nsharpen your programming and problem-solving abilities.\n •	Industry Exposure: Attend webinars and seminars led by experts to gain insights into \ncurrent industry trends and technologies. \n •	Networking: Connect with like-minded peers and professionals, expanding your \nprofessional network within and beyond our institution. \n\nWishing you all a balanced and fulfilling academic journey. \n\nBest regards, \n[Ms. Rachna Narula]",
+    description:`Dear Students, \nAs an Assistant Professor in the CSE Department at Bharatividyapeeth's College of Engineering, New Delhi, I have navigated an educational journey from schooling through B. Tech (Maharashi Dayanand University, Rohtak), M. Tech (Manav Rachna University, Faridabad), and Pursuing Ph.D. (The Northcap University, Gurugram). Throughout this path, self-valuation has been a cornerstone, and I believe it is essential for maintaining a balanced mind-set.\n\nAs the Faculty In-charge of our GeeksforGeeks (GFG) Student Chapter, I am delighted to welcome you to a community dedicated to fostering growth, innovation, and collaboration in the field of computer science and engineering. \n\n<strong>Our Mission:</strong> \nIt aims to create a peer-to-peer learning environment where students can enhance their \ntechnical skills, engage in meaningful projects, and prepare for successful careers in the tech industry. \n\n<strong>Opportunities and Benefits:</strong> \n\n•	Skill Development: Participate in workshops, coding competitions, and hackathons to \nsharpen your programming and problem-solving abilities.\n •	Industry Exposure: Attend webinars and seminars led by experts to gain insights into \ncurrent industry trends and technologies. \n •	Networking: Connect with like-minded peers and professionals, expanding your \nprofessional network within and beyond our institution. \n\nWishing you all a balanced and fulfilling academic journey. \n\nBest regards, \n[Ms. Rachna Narula]`,
     image: "/images/Rachna.jpg",
   },
 ]
@@ -34,16 +34,11 @@ export default function FeatureCarousel() {
 
   // Format the description text to replace \n with <br> and preserve formatting
   const formatDescription = (text: string) => {
-    return text.split('\n').map((line, i) => (
-      <span key={i}>
-        {line}
-        <br />
-      </span>
-    ));
+    return <p dangerouslySetInnerHTML={{ __html: text.replace(/\n/g, "<br>") }} />;
   };
 
   return (
-    <div className="py-20 bg-black min-h-screen">
+    <div className="py-20 bg-[#02091c] min-h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-5xl font-bold text-center mb-12 text-white" style={{ fontFamily: 'serif' }}>Meet Our Faculty Coordinator</h2>
         <motion.div ref={carousel} className="cursor-grab overflow-visible">
@@ -77,7 +72,7 @@ export default function FeatureCarousel() {
                       <img 
                         src={feature.image} 
                         alt={feature.title}
-                        className="rounded-lg shadow-lg w-full"
+                        className="rounded-lg shadow-lg w-full drop-shadow-[0_0_15px_rgba(0,255,255,0.8)] brightness-120 contrast-115"
                       />
                     </div>
                     

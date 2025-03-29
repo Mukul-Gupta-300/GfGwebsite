@@ -20,19 +20,19 @@ const menuItems: MenuItem[] = [
     icon: <Home className="h-5 w-5" />,
     label: "Work",
     href: "https://www.flowersandsaints.com.au",
-    color: "from-blue-500 to-blue-600",
+    color: "from-blue-500/60 to-blue-600/60",
   },
   {
     icon: <MessageCircle className="h-5 w-5" />,
     label: "About",
     href: "https://www.flowersandsaints.com.au",
-    color: "from-green-500 to-green-600",
+    color: "from-green-500/60 to-green-600/60",
   },
   {
     icon: <User className="h-5 w-5" />,
     label: "Contact",
     href: "https://www.flowersandsaints.com.au",
-    color: "from-red-500 to-red-600",
+    color: "from-red-500/60 to-red-600/60",
   },
 ]
 
@@ -47,18 +47,20 @@ export default function Header() {
 
   return (
     <motion.header
-      className="sticky top-0 z-50"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, type: "spring", stiffness: 100, damping: 20 }}
-    >
+  className="sticky top-0 z-50 h-27 bg-black/35 backdrop-blur-lg m-0 p-0"
+  initial={{ y: -90 }}
+  animate={{ y: 0 }}
+  transition={{ duration: 0.6, type: "spring", stiffness: 100, damping: 20 }}
+>
+
       {/* Base Background */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 m-0 p-0">
         {/* Base Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-emerald-950/80 to-blue-950/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-gray-900/60 to-transparent" />
+
         
         {/* Additional Gradient Layers */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 m-0 p-0">
           <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/40 via-blue-950/30 to-transparent" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,theme(colors.emerald.500),transparent_70%)] opacity-10" />
         </div>
@@ -87,7 +89,7 @@ export default function Header() {
             repeat: Number.POSITIVE_INFINITY,
             ease: "linear",
           }}
-          className="absolute top-[80%] h-[1px] w-full opacity-10"
+          className="absolute top-[80%] h-[1px] w-full opacity-10 m-0 p-0"
           style={{
             background: "linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.3), transparent)",
           }}
@@ -112,10 +114,13 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <Link href="/" className="-m-1.5 p-1.5">
+            {/* Persistent Glow Effect */}
+            <div className="absolute inset-0 w-20 h-20 mx-auto  bg-blue-400/70 blur-2xl brightness-110" />
+            
+            <Link href="/" className="m-1.5 p-1.5">
               <span className="sr-only">Flowers & Saints</span>
               <img
-                className="h-10 w-auto"
+                className="h-13 w-auto brightness-180 contrast-150"
                 src="/images/Logo.png"
                 alt="GfG Logo"
               />

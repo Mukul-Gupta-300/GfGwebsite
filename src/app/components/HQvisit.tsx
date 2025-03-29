@@ -45,7 +45,7 @@ export default function HQVisitsPage() {
   };
 
   return (
-    <div className="py-20 bg-black min-h-screen">
+    <div className="py-20 bg-[#02091c] min-h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-5xl font-bold text-center mb-12 text-white" style={{ fontFamily: 'serif' }}>
           Our HQ Visits
@@ -77,7 +77,7 @@ export default function HQVisitsPage() {
                 </div>
 
                 {/* Content container */}
-                <div className="relative p-6">
+                <div className="relative p-5">
                   <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
                     {/* Visit image */}
                     <div className="shrink-0 w-64 self-center md:self-auto">

@@ -129,7 +129,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="bg-gradient-to-l from-emerald-800 via-blue-400 to-emerald-800 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-l from-emerald-800 via-blue-400 to-emerald-800 bg-clip-text text-transparent brightness-120">
               GeeksforGeeks BVP
             </span>
           </motion.h1>
@@ -172,7 +172,7 @@ export default function Hero() {
             <div 
               className="absolute inset-0 flex items-center justify-center" 
               style={{
-                filter: "blur(15px) brightness(1.5)",
+                filter: "blur(40px) brightness(1.3)",
                 transform: "scale(0.95)",
                 opacity: 0.6,
                 zIndex: 0
@@ -181,7 +181,7 @@ export default function Hero() {
               <img
                 src="/images/Student Chapter Logo.png"
                 alt=""
-                className="w-[400px]"
+                className="w-[400px] brightness-160 contrast-120"
               />
             </div>
             
